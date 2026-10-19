@@ -1,0 +1,1406 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Computing | Learning Hub</title>
+
+    <style>
+        /* =========================
+           1. GENERAL DESIGN
+        ========================= */
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f3f7fc;
+            color: #243247;
+            line-height: 1.7;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        h1, h2, h3 {
+            line-height: 1.3;
+        }
+
+        /* =========================
+           2. NAVIGATION
+        ========================= */
+        header {
+            background: #102e59;
+            color: white;
+            padding: 16px 5%;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        nav a {
+            color: white;
+            padding: 9px 13px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            background: #2879d8;
+        }
+
+        /* =========================
+           3. HERO SECTION
+        ========================= */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 35px;
+            padding: 60px 7%;
+            background: linear-gradient(135deg, #dff1ff, #ffffff);
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero h1 {
+            font-size: clamp(30px, 4vw, 48px);
+            color: #123d80;
+            margin: 0 0 15px;
+        }
+
+        .hero p {
+            font-size: 17px;
+            max-width: 600px;
+        }
+
+        .hero img {
+            flex: 1;
+            width: 45%;
+            max-height: 330px;
+            object-fit: cover;
+            border-radius: 18px;
+        }
+
+        .button {
+            display: inline-block;
+            background: #1675d1;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 8px;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background: #104f98;
+        }
+
+        /* =========================
+           4. GENERAL SECTIONS
+        ========================= */
+        section {
+            padding: 45px 6%;
+            scroll-margin-top: 20px;
+        }
+
+        .section-title {
+            color: #123d80;
+            font-size: 30px;
+            margin-bottom: 5px;
+        }
+
+        .section-intro {
+            margin-top: 0;
+            margin-bottom: 28px;
+            color: #5b6b80;
+        }
+
+        .light-section {
+            background: #eaf3fc;
+        }
+
+        /* =========================
+           5. CARDS
+        ========================= */
+        .card-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+            gap: 22px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #dce6f1;
+            box-shadow: 0 4px 12px #102e5910;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background: #e8eef5;
+        }
+
+        .card-content {
+            padding: 18px;
+        }
+
+        .card h3 {
+            color: #164b91;
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            margin-bottom: 0;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e0efff;
+            color: #1455a0;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 4px 9px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* =========================
+           6. TIMELINE
+        ========================= */
+        .timeline {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .timeline-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            border-top: 5px solid #2582db;
+            box-shadow: 0 4px 12px #102e5910;
+        }
+
+        .timeline-item img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .timeline-content {
+            padding: 18px;
+        }
+
+        .year {
+            color: #1675d1;
+            font-weight: bold;
+            font-size: 19px;
+        }
+
+        /* =========================
+           7. MOTHERBOARD DIAGRAM
+        ========================= */
+        .motherboard-layout {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+            align-items: center;
+        }
+
+        .motherboard-image {
+            width: 100%;
+            max-height: 390px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .component-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .component {
+            background: white;
+            padding: 15px;
+            border-left: 5px solid #2184dd;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px #102e590c;
+        }
+
+        .component h3 {
+            margin: 0 0 5px;
+            color: #164b91;
+        }
+
+        .component p {
+            margin: 0;
+        }
+
+        /* =========================
+           8. TABLE
+        ========================= */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            min-width: 500px;
+        }
+
+        th, td {
+            border: 1px solid #dce6f1;
+            padding: 13px;
+            text-align: left;
+        }
+
+        th {
+            background: #164b91;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #edf5ff;
+        }
+
+        /* =========================
+           9. INFORMATION BOX
+        ========================= */
+        .info-box {
+            background: #ffffff;
+            border-left: 5px solid #2582db;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .info-box h3 {
+            color: #164b91;
+            margin-top: 0;
+        }
+
+        /* =========================
+           10. FOOTER
+        ========================= */
+        footer {
+            background: #102e59;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        footer p {
+            margin: 5px;
+        }
+
+        /* =========================
+           11. MOBILE RESPONSIVENESS
+        ========================= */
+        @media (max-width: 700px) {
+            .hero {
+                flex-direction: column;
+                padding: 40px 6%;
+            }
+
+            .hero img {
+                width: 100%;
+            }
+
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav {
+                gap: 3px;
+            }
+
+            nav a {
+                padding: 7px;
+            }
+
+            section {
+                padding: 35px 5%;
+            }
+
+            .section-title {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVIGATION BAR
+    ========================== -->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                &#128187; Introduction to Computing
+            </div>
+
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#timeline">Timeline</a>
+                <a href="#computer-parts">Computer Parts</a>
+                <a href="#motherboard">Motherboard</a>
+                <a href="#hardware-software">Hardware & Software</a>
+                <a href="#networks">Networks</a>
+                <a href="#safety">Safety</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- =========================
+         HOME / HERO
+    ========================== -->
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>Welcome to Introduction to Computing</h1>
+
+                <p>
+                    Discover the history of computers, learn about
+                    computer hardware, explore motherboard components,
+                    and understand how technology helps people
+                    communicate, learn, and work.
+                </p>
+
+                <p>
+                    This educational website introduces the basic
+                    concepts of computing in a simple and visual way.
+                </p>
+
+                <a href="#timeline" class="button">
+                    Explore the Lessons
+                </a>
+            </div>
+
+            <img
+                src="https://images.unsplash.com/photo-1587831990711-23ca6441447b?auto=format&fit=crop&w=1000&q=80"
+                alt="Desktop computer setup">
+        </section>
+
+        <!-- =========================
+             1. HISTORY OF COMPUTING
+        ========================== -->
+        <section id="timeline">
+            <h2 class="section-title">
+                1. Introduction to Computing: Historical Timeline
+            </h2>
+
+            <p class="section-intro">
+                Computing developed over many centuries.
+                The following milestones show how calculation tools
+                evolved into modern computers.
+            </p>
+
+            <div class="timeline">
+
+                <article class="timeline-item">
+                    <img
+                        src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=700&q=80"
+                        alt="Learning and calculating with traditional tools">
+
+                    <div class="timeline-content">
+                        <span class="year">Ancient Times</span>
+                        <h3>The Abacus</h3>
+                        <p>
+                            The abacus is an early calculating tool
+                            used to perform arithmetic operations
+                            such as addition and subtraction.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <img
+                        src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=700&q=80"
+                        alt="Mathematical calculations and numbers">
+
+                    <div class="timeline-content">
+                        <span class="year">1642</span>
+                        <h3>Pascaline</h3>
+                        <p>
+                            Blaise Pascal developed a mechanical
+                            calculator that could perform addition
+                            and subtraction.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <img
+                        src="https://images.unsplash.com/photo-1535378620166-273708d44e4c?auto=format&fit=crop&w=700&q=80"
+                        alt="Mechanical and engineering technology">
+
+                    <div class="timeline-content">
+                        <span class="year">1837</span>
+                        <h3>Analytical Engine</h3>
+                        <p>
+                            Charles Babbage designed the Analytical
+                            Engine, an important early design for
+                            a general-purpose programmable computer.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <img
+                        src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=700&q=80"
+                        alt="Electronic circuits">
+
+                    <div class="timeline-content">
+                        <span class="year">1940s</span>
+                        <h3>Electronic Computers</h3>
+                        <p>
+                            Computers such as ENIAC used electronic
+                            components to perform calculations
+                            much faster than many earlier machines.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <img
+                        src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=700&q=80"
+                        alt="Personal laptop computer">
+
+                    <div class="timeline-content">
+                        <span class="year">1970s–1980s</span>
+                        <h3>Personal Computers</h3>
+                        <p>
+                            Microprocessors helped make computers
+                            smaller and more affordable for
+                            individuals, schools, and businesses.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <img
+                        src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=700&q=80"
+                        alt="People using modern digital technology">
+
+                    <div class="timeline-content">
+                        <span class="year">1990s–Today</span>
+                        <h3>Internet and Modern Computing</h3>
+                        <p>
+                            Internet services, smartphones, cloud
+                            computing, and artificial intelligence
+                            have transformed how people use technology.
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+
+            <div class="info-box">
+                <h3>Why is computer history important?</h3>
+                <p>
+                    Studying computer history helps us understand
+                    how earlier inventions influenced modern
+                    hardware, software, communication, and
+                    information processing.
+                </p>
+            </div>
+        </section>
+
+        <!-- =========================
+             2. PARTS OF A COMPUTER
+        ========================== -->
+        <section id="computer-parts" class="light-section">
+            <h2 class="section-title">2. Parts of a Computer</h2>
+
+            <p class="section-intro">
+                A desktop computer system includes several devices
+                that work together to accept input, process data,
+                store information, and produce output.
+            </p>
+
+            <div class="card-grid">
+
+                <article class="card">
+                    <img
+                        src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=700&q=80"
+                        alt="Computer monitor">
+
+                    <div class="card-content">
+                        <span class="tag">Output Device</span>
+                        <h3>Monitor</h3>
+                        <p>
+                            Displays text, images, videos, and
+                            other visual information from the computer.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img
+                        src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=700&q=80"
+                        alt="Computer system unit and components">
+
+                    <div class="card-content">
+                        <span class="tag">Processing</span>
+                        <h3>System Unit</h3>
+                        <p>
+                            Houses important components such as the
+                            CPU, motherboard, memory, storage, and
+                            power supply.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img
+                        src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=700&q=80"
+                        alt="Computer keyboard">
+
+                    <div class="card-content">
+                        <span class="tag">Input Device</span>
+                        <h3>Keyboard</h3>
+                        <p>
+                            Allows users to enter letters, numbers,
+                            symbols, commands, and other data.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img
+                        src="https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=700&q=80"
+                        alt="Computer mouse">
+
+                    <div class="card-content">
+                        <span class="tag">Input Device</span>
+                        <h3>Mouse</h3>
+                        <p>
+                            Controls the pointer and allows users
+                            to click, select, drag, and interact
+                            with graphical interfaces.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img
+                        src="https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=700&q=80"
+                        alt="Audio speakers">
+
+                    <div class="card-content">
+                        <span class="tag">Output Device</span>
+                        <h3>Speakers</h3>
+                        <p>
+                            Produce sound from music, videos,
+                            applications, and other audio sources.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img
+                        src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&w=700&q=80"
+                        alt="Printer device">
+
+                    <div class="card-content">
+                        <span class="tag">Output Device</span>
+                        <h3>Printer</h3>
+                        <p>
+                            Produces physical copies of digital
+                            documents, pictures, and other files.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img
+                        src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=80"
+                        alt="Laptop computer">
+
+                    <div class="card-content">
+                        <span class="tag">Portable Computer</span>
+                        <h3>Laptop</h3>
+                        <p>
+                            A portable computer with an integrated
+                            display, keyboard, pointing device,
+                            battery, and internal components.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img
+                        src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=80"
+                        alt="Headphones">
+
+                    <div class="card-content">
+                        <span class="tag">Audio Output</span>
+                        <h3>Headphones</h3>
+                        <p>
+                            Allow a user to listen to computer
+                            audio without using external speakers.
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- =========================
+             3. INTERNAL SYSTEM UNIT PARTS
+        ========================== -->
+        <section id="system-unit">
+            <h2 class="section-title">
+                3. Internal Parts of the System Unit
+            </h2>
+
+            <p class="section-intro">
+                These internal components perform the main
+                computing, memory, storage, power, and cooling tasks.
+            </p>
+
+            <div class="card-grid">
+
+                <article class="card">
+                    <img
+                        src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=700&q=80"
+                        alt="Computer processor">
+
+                    <div class="card-content">
+                        <h3>CPU</h3>
+                        <p>
+                            The Central Processing Unit executes
+                            instructions and performs calculations.
+                            It is often called the computer's brain.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img
+                        src="https://images.unsplash.com/photo-1562976540-1502c2145186?auto=format&fit=crop&w=700&q=80"
+                        alt="Computer memory module">
+
+                    <div class="card-content">
+                        <h3>RAM</h3>
+                        <p>
+                            Random Access Memory temporarily stores
+                            data and instructions currently in use.
+                            Its contents are normally lost when
+                            power is removed.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img
+                        src="https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=700&q=80"
+                        alt="Computer storage device">
+
+                    <div class="card-content">
+                        <h3>Storage Device</h3>
+                        <p>
+                            HDDs and SSDs store the operating system,
+                            programs, and files for long-term use.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img
+                        src="https://images.unsplash.com/photo-1587202372634-32705e3bf49c?auto=format&fit=crop&w=700&q=80"
+                        alt="Computer hardware components">
+
+                    <div class="card-content">
+                        <h3>Graphics Processing Unit</h3>
+                        <p>
+                            The GPU processes graphics and parallel
+                            workloads. It can be integrated into
+                            a processor or installed as a separate card.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img
+                        src="https://images.unsplash.com/photo-1624705002806-5d72df19c3ad?auto=format&fit=crop&w=700&q=80"
+                        alt="Computer power and hardware">
+
+                    <div class="card-content">
+                        <h3>Power Supply Unit</h3>
+                        <p>
+                            Converts electricity from an outlet into
+                            the power required by computer components.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img
+                        src="https://images.unsplash.com/photo-1587202372616-b43abea06c2a?auto=format&fit=crop&w=700&q=80"
+                        alt="Computer cooling components">
+
+                    <div class="card-content">
+                        <h3>Cooling System</h3>
+                        <p>
+                            Fans and heatsinks help remove heat
+                            and keep components within safe
+                            operating temperatures.
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- =========================
+             4. MOTHERBOARD
+        ========================== -->
+        <section id="motherboard" class="light-section">
+            <h2 class="section-title">
+                4. Parts of the Motherboard
+            </h2>
+
+            <p class="section-intro">
+                The motherboard is the main circuit board of a
+                computer. It connects the processor, memory,
+                storage, expansion cards, and other components.
+            </p>
+
+            <div class="motherboard-layout">
+
+                <div>
+                    <img
+                        class="motherboard-image"
+                        src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=85"
+                        alt="Electronic circuit board illustrating motherboard technology">
+
+                    <div class="info-box">
+                        <h3>What does a motherboard do?</h3>
+                        <p>
+                            It provides electrical connections and
+                            communication pathways between compatible
+                            hardware components. The exact layout
+                            varies by motherboard model.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="component-list">
+
+                    <article class="component">
+                        <h3>1. CPU Socket</h3>
+                        <p>
+                            Holds the processor. The socket must
+                            match the supported CPU family.
+                        </p>
+                    </article>
+
+                    <article class="component">
+                        <h3>2. RAM Slots</h3>
+                        <p>
+                            Hold memory modules used for temporary
+                            storage of active data and instructions.
+                        </p>
+                    </article>
+
+                    <article class="component">
+                        <h3>3. Chipset</h3>
+                        <p>
+                            Helps manage communication and
+                            connectivity between supported
+                            components and interfaces.
+                        </p>
+                    </article>
+
+                    <article class="component">
+                        <h3>4. PCI Express Slots</h3>
+                        <p>
+                            Connect expansion cards such as
+                            graphics, network, and sound cards.
+                        </p>
+                    </article>
+
+                    <article class="component">
+                        <h3>5. SATA Connectors</h3>
+                        <p>
+                            Connect compatible SATA storage devices
+                            such as hard drives and SATA SSDs.
+                        </p>
+                    </article>
+
+                    <article class="component">
+                        <h3>6. M.2 Slot</h3>
+                        <p>
+                            Supports compatible M.2 devices,
+                            including NVMe SSDs and, on some boards,
+                            other supported modules.
+                        </p>
+                    </article>
+
+                    <article class="component">
+                        <h3>7. Power Connectors</h3>
+                        <p>
+                            Receive power from the power supply
+                            for the motherboard and processor.
+                        </p>
+                    </article>
+
+                    <article class="component">
+                        <h3>8. BIOS / UEFI Firmware</h3>
+                        <p>
+                            Initializes hardware and helps start
+                            the operating system during boot.
+                        </p>
+                    </article>
+
+                    <article class="component">
+                        <h3>9. CMOS Battery</h3>
+                        <p>
+                            Helps maintain the real-time clock
+                            and certain firmware settings when
+                            the computer is powered off.
+                        </p>
+                    </article>
+
+                    <article class="component">
+                        <h3>10. Rear I/O Ports</h3>
+                        <p>
+                            Provide external connections such as
+                            USB, audio, Ethernet, and display ports,
+                            depending on the board.
+                        </p>
+                    </article>
+
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h3>Important motherboard reminder</h3>
+                <p>
+                    Not every motherboard has the same components,
+                    connectors, or arrangement. Always check the
+                    motherboard manual before installing hardware.
+                </p>
+            </div>
+        </section>
+
+        <!-- =========================
+             5. HARDWARE AND SOFTWARE
+        ========================== -->
+        <section id="hardware-software">
+            <h2 class="section-title">
+                5. Hardware and Software
+            </h2>
+
+            <p class="section-intro">
+                A computer system needs physical equipment and
+                software instructions to perform useful tasks.
+            </p>
+
+            <div class="card-grid">
+
+                <article class="card">
+                    <img
+                        src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=700&q=80"
+                        alt="Physical computer circuitry">
+
+                    <div class="card-content">
+                        <h3>Hardware</h3>
+                        <p>
+                            Hardware refers to the physical parts
+                            of a computer that can be touched.
+                        </p>
+                        <p>
+                            <strong>Examples:</strong> CPU, monitor,
+                            keyboard, RAM, mouse, and motherboard.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img
+                        src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=700&q=80"
+                        alt="Computer programming code">
+
+                    <div class="card-content">
+                        <h3>Software</h3>
+                        <p>
+                            Software consists of programs and
+                            instructions that tell a computer
+                            how to perform tasks.
+                        </p>
+                        <p>
+                            <strong>Examples:</strong> Windows,
+                            Linux, web browsers, text editors,
+                            and games.
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+
+            <div class="info-box">
+                <h3>Types of software</h3>
+                <p>
+                    <strong>System software:</strong> Operating
+                    systems and utilities that manage the computer.
+                </p>
+                <p>
+                    <strong>Application software:</strong> Programs
+                    used to complete tasks, such as writing
+                    documents, browsing the internet, or editing images.
+                </p>
+                <p>
+                    <strong>Programming software:</strong> Tools
+                    used to write, test, and maintain computer programs.
+                </p>
+            </div>
+        </section>
+
+        <!-- =========================
+             6. INPUT, PROCESSING,
+             OUTPUT AND STORAGE
+        ========================== -->
+        <section id="ipo" class="light-section">
+            <h2 class="section-title">
+                6. The IPO Cycle
+            </h2>
+
+            <p class="section-intro">
+                Computers commonly receive input, process data,
+                produce output, and may store results for later use.
+            </p>
+
+            <div class="card-grid">
+
+                <article class="card">
+                    <div class="card-content">
+                        <span class="tag">Step 1</span>
+                        <h3>Input</h3>
+                        <p>
+                            Data is entered using a keyboard,
+                            mouse, scanner, microphone, or other
+                            input device.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-content">
+                        <span class="tag">Step 2</span>
+                        <h3>Processing</h3>
+                        <p>
+                            The CPU executes instructions to
+                            process data according to a program.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-content">
+                        <span class="tag">Step 3</span>
+                        <h3>Output</h3>
+                        <p>
+                            Results are presented through a
+                            monitor, printer, speakers, or
+                            another output device.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-content">
+                        <span class="tag">Step 4</span>
+                        <h3>Storage</h3>
+                        <p>
+                            Data and results can be saved on
+                            an SSD, hard drive, USB drive,
+                            or other storage medium.
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+
+            <div class="info-box">
+                <h3>Example: Calculating student grades</h3>
+                <p>
+                    <strong>Input:</strong> Enter examination scores.
+                </p>
+                <p>
+                    <strong>Processing:</strong> Calculate the
+                    average using a program.
+                </p>
+                <p>
+                    <strong>Output:</strong> Display the final grade.
+                </p>
+                <p>
+                    <strong>Storage:</strong> Save the result
+                    in a file or database.
+                </p>
+            </div>
+        </section>
+
+        <!-- =========================
+             7. DATA AND INFORMATION
+        ========================== -->
+        <section id="data-information">
+            <h2 class="section-title">
+                7. Data and Information
+            </h2>
+
+            <div class="card-grid">
+
+                <article class="card">
+                    <div class="card-content">
+                        <h3>Data</h3>
+                        <p>
+                            Raw facts and values that have not
+                            yet been organized into meaningful
+                            information.
+                        </p>
+                        <p>
+                            <strong>Example:</strong> 85, 90, 95.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-content">
+                        <h3>Information</h3>
+                        <p>
+                            Data that has been processed or
+                            organized so that it has meaning.
+                        </p>
+                        <p>
+                            <strong>Example:</strong> The average
+                            of 85, 90, and 95 is 90.
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+
+            <div class="info-box">
+                <h3>Common forms of digital data</h3>
+                <p>
+                    Text, numbers, images, audio, video, and
+                    computer instructions can all be represented
+                    and processed digitally.
+                </p>
+            </div>
+        </section>
+
+        <!-- =========================
+             8. NUMBER SYSTEMS
+        ========================== -->
+        <section id="number-systems" class="light-section">
+            <h2 class="section-title">
+                8. Number Systems in Computing
+            </h2>
+
+            <p class="section-intro">
+                Computers represent and process data using
+                digital signals. Different number systems
+                are useful for understanding those representations.
+            </p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Number System</th>
+                            <th>Base</th>
+                            <th>Symbols Used</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Binary</td>
+                            <td>2</td>
+                            <td>0, 1</td>
+                            <td>1010</td>
+                        </tr>
+
+                        <tr>
+                            <td>Octal</td>
+                            <td>8</td>
+                            <td>0–7</td>
+                            <td>12</td>
+                        </tr>
+
+                        <tr>
+                            <td>Decimal</td>
+                            <td>10</td>
+                            <td>0–9</td>
+                            <td>10</td>
+                        </tr>
+
+                        <tr>
+                            <td>Hexadecimal</td>
+                            <td>16</td>
+                            <td>0–9 and A–F</td>
+                            <td>A</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="info-box">
+                <h3>Example conversion</h3>
+                <p>
+                    Binary <strong>1010</strong> equals decimal
+                    <strong>10</strong>.
+                </p>
+                <p>
+                    Calculation: (1 × 8) + (0 × 4) +
+                    (1 × 2) + (0 × 1) = 10.
+                </p>
+            </div>
+        </section>
+
+        <!-- =========================
+             9. COMPUTER NETWORKS
+        ========================== -->
+        <section id="networks">
+            <h2 class="section-title">
+                9. Computer Networks and the Internet
+            </h2>
+
+            <p class="section-intro">
+                A computer network connects devices so they
+                can communicate and share data or resources.
+            </p>
+
+            <div class="card-grid">
+
+                <article class="card">
+                    <img
+                        src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=700&q=80"
+                        alt="Network servers">
+
+                    <div class="card-content">
+                        <h3>LAN</h3>
+                        <p>
+                            A Local Area Network connects devices
+                            within a limited area, such as a
+                            computer laboratory, office, or school.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img
+                        src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=700&q=80"
+                        alt="Global digital connections">
+
+                    <div class="card-content">
+                        <h3>WAN</h3>
+                        <p>
+                            A Wide Area Network connects networks
+                            across large geographical areas.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img
+                        src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=700&q=80"
+                        alt="People using connected technology">
+
+                    <div class="card-content">
+                        <h3>Internet</h3>
+                        <p>
+                            The internet is a global network of
+                            interconnected networks that supports
+                            websites, email, online learning,
+                            and many other services.
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- =========================
+             10. COMPUTER SECURITY
+        ========================== -->
+        <section id="safety" class="light-section">
+            <h2 class="section-title">
+                10. Computer Safety and Responsible Use
+            </h2>
+
+            <p class="section-intro">
+                Computers should be used safely, responsibly,
+                and ethically.
+            </p>
+
+            <div class="card-grid">
+
+                <article class="card">
+                    <div class="card-content">
+                        <h3>Protect Your Accounts</h3>
+                        <p>
+                            Use strong, unique passwords and
+                            never share them with others.
+                            Enable multifactor authentication
+                            when available.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-content">
+                        <h3>Avoid Suspicious Links</h3>
+                        <p>
+                            Check links and downloads carefully.
+                            Do not open unexpected attachments
+                            or provide information to suspicious
+                            websites.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-content">
+                        <h3>Handle Hardware Properly</h3>
+                        <p>
+                            Keep liquids away from equipment.
+                            Shut down the computer before
+                            installing internal components,
+                            and follow safety instructions.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-content">
+                        <h3>Practice Digital Ethics</h3>
+                        <p>
+                            Respect privacy, follow copyright
+                            rules, avoid cyberbullying, and
+                            use technology responsibly.
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- =========================
+             REFERENCES AND IMAGE NOTE
+        ========================== -->
+        <section id="references">
+            <h2 class="section-title">Learning Resources</h2>
+
+            <p class="section-intro">
+                Use reliable educational resources to learn
+                more about computing and computer hardware.
+            </p>
+
+            <div class="info-box">
+                <p>
+                    <strong>Computer history:</strong>
+                    <a href="https://www.computerhistory.org/"
+                       target="_blank" rel="noopener noreferrer">
+                        Computer History Museum
+                    </a>
+                </p>
+
+                <p>
+                    <strong>Computer science learning:</strong>
+                    <a href="https://www.khanacademy.org/computing"
+                       target="_blank" rel="noopener noreferrer">
+                        Khan Academy Computing
+                    </a>
+                </p>
+
+                <p>
+                    <strong>HTML reference:</strong>
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/HTML"
+                       target="_blank" rel="noopener noreferrer">
+                        MDN HTML Documentation
+                    </a>
+                </p>
+
+                <p>
+                    <strong>CSS reference:</strong>
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS"
+                       target="_blank" rel="noopener noreferrer">
+                        MDN CSS Documentation
+                    </a>
+                </p>
+
+                <p>
+                    <strong>Image note:</strong>
+                    Images in this demonstration are loaded from
+                    external URLs. Check each image's source and
+                    license before using it.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+    <footer>
+        <h3>Introduction to Computing</h3>
+        <p>Learn • Explore • Understand Technology</p>
+        <p>&copy; 2026 Introduction to Computing Learning Hub</p>
+        <p>Created using HTML and CSS</p>
+        <p>All rights reserved</p>
+        <p>TeacherCha</p>
+    </footer>
+
+</body>
+</html>
